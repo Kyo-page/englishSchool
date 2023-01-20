@@ -1,0 +1,687 @@
+@charset "UTF-8";
+
+/*--------------------------------
+全体
+---------------------------------*/
+
+body {
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  font-size: 16px;
+  line-height:1.8em;
+  color: var(--color-font-base);
+}
+
+h1 {
+  font-size: 32px;
+  line-height:1.3em;
+}
+
+h2 {
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 4px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  margin-bottom: 100px;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  border-bottom: #333333 solid 3px;
+  bottom: -20px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  letter-spacing: 1px;
+}
+
+/* ------------------------------
+カスタムプロパティ 
+------------------------------ */
+
+/* カラー */
+:root {
+  --color-bg-base: #fff;
+  --color-bg-light: #eceff4;
+  --color-bg-dark: #2d3440;
+  --color-bg-button: #4c566a;
+  --color-bg-button-hover: #2e3440;
+  --color-bg-icon: #d8dee9;
+  --color-icon: #5e81ac;
+  --color-icon-light: #eceff4;
+  --color-font-light: #eceff4;
+  --color-font-base: #333333;
+  --color-logo: #4c566a;
+}
+
+/* コンテナ幅 */
+:root {
+  --width-content: 860px;
+}
+
+/* ------------------------------
+ここから書きはじめる
+------------------------------ */
+
+header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*
+ハンバーガーメニュー
+メニューが閉じている時は、「left: -300px;」で画面左に隠し、
+「opacity: 0;」で非表示にしている
+*/
+#navi {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  padding: 110px 60px;
+  transition: all 0.6s ease;
+  z-index: 20;
+  visibility: hidden;
+  opacity: 0;
+  text-align: center;
+  background-color: #FF2A2A;
+}
+#navi a {
+  color: #fff;
+  font-weight: bold;
+}
+#navi li {
+  margin-bottom: 20px;
+}
+
+#navi .btn {
+  margin-top: 20px;
+  display: inline-block;
+  border: #fff solid 1px;
+  padding: 15px 0;
+  width: 250px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+#navi .btn:hover {
+  background-color: #fff;
+  color: #FF2A2A;
+  opacity: 1;
+}
+
+/* ボタンの右と下の線は疑似要素で設定 */
+
+#navi .btn::after {
+  content: "　";
+  width: 250px;
+  border-right: solid 1px #fff;
+  border-bottom: solid 1px #fff;
+  padding: 15px 0;
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+}
+
+
+/*
+ハンバーガーメニュー
+メニューが開いている時は、「left: 0;」「opacity: 1;」で
+画面左に表示する
+*/
+.open #navi {
+  visibility: visible;
+  opacity: 1;
+}
+
+.toggle_btn {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transition: all 0.5s;
+  cursor: pointer;
+  z-index: 20;
+  background-color: #FF2A2A;
+}
+
+.toggle_btn:hover {
+  opacity: 0.7;
+}
+
+/*
+ハンバーガーメニューの線の設定（メニューが閉じている時）
+*/
+.toggle_btn span {
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  left: 25px;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+
+
+/*
+1本目の線の位置を設定
+*/
+.toggle_btn span:nth-child(1) {
+  top: 36px;
+}
+/*
+2本目の線の位置を設定
+*/
+.toggle_btn span:nth-child(2) {
+  top: 50px;
+}
+/*
+3本目の線の位置を設定
+*/
+.toggle_btn span:nth-child(3) {
+  top:64px;
+}
+
+/*
+1本目の線を-45度回転
+*/
+.open .toggle_btn span:nth-child(1) {
+  -webkit-transform: translateY(14px) rotate(-45deg);
+  transform: translateY(14px) rotate(-45deg);
+}
+
+/*
+2本目の線を45度回転
+*/
+.open .toggle_btn span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*
+3本目の線を45度回転
+*/
+.open .toggle_btn span:nth-child(3) {
+  -webkit-transform: translateY(-14px) rotate(45deg);
+  transform: translateY(-14px) rotate(45deg);
+}
+
+.red {
+  width: 100px;
+  margin: 50px 0 0 40px;
+}
+
+.white {
+  width: 100px;
+  position: absolute;
+  top: 50px;
+  left: 40px;
+}
+
+#mainvisual {
+  height: 720px;
+  position: relative;
+  margin-bottom: 120px;
+}
+
+#mainvisual .fade li {
+  width: 75%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* 最初は3枚の画像を非表示にしておく */
+  opacity: 0;
+  /*
+  アニメーションを実行
+  fade：下で定義している「@keyframes fade」を実行
+  15s：「@keyframes fade」の処理を15秒かけて実行
+  infinite：アニメーションの処理を無限に繰り返す
+  */
+  animation: fade 15s infinite;
+}
+
+/*
+1枚目の画像のアニメーション実行タイミングを設定
+「animation-delay: 0s;」ですぐに実行
+*/
+#mainvisual .fade li:nth-child(1) {
+  animation-delay: 0s;
+}
+
+/*
+2枚目の画像のアニメーション実行タイミングを設定
+「animation-delay: 5s;」で5秒後に実行
+*/
+#mainvisual .fade li:nth-child(2) {
+  animation-delay: 5s;
+}
+/*
+3枚目の画像のアニメーション実行タイミングを設定
+「animation-delay: 10s;」で10秒後に実行
+*/
+#mainvisual .fade li:nth-child(3) {
+  animation-delay: 10s;
+}
+#mainvisual .fade li img {
+  width: 100%;
+  height: 720px;
+  object-fit: cover;
+}
+
+/*
+「box-shadow」で画像のまわりをぼかす(白い内側の影を上にかぶせる)
+*/
+#mainvisual .fade li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0px 0px 20px 20px #fff;
+}
+/*
+アニメーション処理
+上の「animation」で15sを指定しているので下記の処理を15秒かけて実行
+0%が0秒を表し、100%が15秒後を表す。
+
+0%の「opacity: 0;」で非表示の状態からスタートし、
+15%になるまでの間に少しづつ画像を表示（フェードイン）させる。
+そこから30%の時点までは画像を表示させたままの状態を維持し、
+45%の時点に向けて画像を非表示（フェードアウト）する。
+そこから100%まで非表示の状態を維持する。
+*/
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#mainvisual .text {
+  z-index: 10;
+  position: absolute;
+  top: 274px;
+  left: 135px;
+}
+
+#mainvisual .title {
+  font-size: 46px;
+  font-weight: bold;
+  letter-spacing: 8px;
+  line-height: 1.3;
+  text-shadow: 0 4px 6px #fff;
+  margin-bottom: 30px;
+}
+
+#mainvisual .btn {
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  line-height: 1.5;
+  letter-spacing: 2px;
+  padding: 15px 0;
+  width: 500px;
+  border-radius: 10px;
+  background-color: #FF2A2A;
+  /* 文字の下に影をつけてボタンに立体感を出す */
+  border-bottom: 6px solid #9a0413;
+  position: relative;
+}
+
+#mainvisual .text .btn::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-top: #fff solid 3px;
+  border-right: #fff solid 3px;
+  position: absolute;
+  top: 21px;
+  right: 35px;
+  transform: rotate(45deg);
+}
+
+/*
+ホバー時は、opacityで透過させながら「transform: scale(1.05);」で
+少しだけボタンのサイズを大きくする
+*/
+#mainvisual .text .btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+#reason .content {
+  padding: 80px 0;
+  background-color: #FF2A2A;
+}
+
+#reason .slide {
+  background-color: #fff;
+  border-radius: 20px  0px 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+  width: 50%;
+  opacity: 0;
+}
+
+#reason .inview-slide-left {
+  margin-bottom: 40px;
+  border-radius: 0 20px 20px 0;
+}
+
+#reason .slide img {
+  height: 60px;
+  margin-right: 30px;
+}
+
+#reason .slide .title {
+  color: #FF2A2A;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#reason .slide p {
+  font-size: 18px;
+}
+
+/*
+アニメーション（スライド左）を実行
+
+slide-left：下で定義している「@keyframes slide-left」を実行
+0.5s：アニメーションが始まってから終わるまでの時間（0.5sかけて実行）
+ease-out：アニメーションの変化（開始時は早く、終了時は緩やかに変化）
+0s：アニメーションが始まるまでの時間（0sですぐに実行）
+1：アニメーションの繰り返し回数（1回）
+forwards：アニメーション終了時の状態をそのまま維持
+*/
+#reason .slide-left {
+  animation: slide-left 0.5s ease-out 0s 1 forwards;
+}
+
+/*
+アニメーション処理
+
+最初は「translateX(-50%);」で左側に隠しておく
+100%（0.5秒）かけて要素を表示させながら元の位置へ移動させる
+*/
+@keyframes slide-left {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*
+アニメーション（スライド右）を実行
+
+※左の処理と同様
+*/
+#reason .slide-right {
+  animation: slide-right 0.5s ease-out 0s 1 forwards;
+}
+@keyframes slide-right {
+  0% {
+    transform: translateX(150%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+.wrapper {
+  max-width: var(--width-content);
+  margin: 0 auto;
+}
+
+#voices {
+  padding: 120px 0;
+}
+
+#voices .item {
+  display: flex;
+  align-items: flex-start;
+  opacity: 0;
+}
+
+#voices .middle {
+  justify-content: right;
+  flex-direction: row-reverse;
+  margin: 60px 0;
+}
+
+#voices img {
+  width: 120px;
+  background-color: #CCCCCC;
+  border-radius: 50%;
+}
+
+#voices .name {
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+#voices .voice {
+  background-color: #E9F1FB;
+  border-radius: 15px;
+  padding: 20px;
+  width: 520px;
+  margin-left: 25px;
+  position: relative;
+}
+
+#voices .voice::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  bottom: 35px;
+  border-top: 15px solid transparent;
+  border-right: 15px solid #E9F1FB;
+  border-bottom: 15px solid transparent;
+}
+
+/*
+アニメーションを実行
+
+balloon：下で定義している「@keyframes balloon」を実行
+0.5s：アニメーションが始まってから終わるまでの時間（0.5sかけて実行）
+ease-out：アニメーションの変化（開始時は早く、終了時は緩やかに変化）
+0s：アニメーションが始まるまでの時間（0sですぐに実行）
+1：アニメーションの繰り返し回数（1回）
+forwards：アニメーション終了時の状態をそのまま維持
+*/
+#voices .balloon {
+  animation: balloon 0.5s ease-out 0s 1 forwards;
+}
+/*
+アニメーション処理
+
+最初は「transform: scale(0.1);」で要素を小さくした状態で、「opacity: 0;」で非表示にしておく
+0.5秒かけて要素を表示させながら元のサイズへ戻す
+*/
+@keyframes balloon {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#about {
+  padding: 60px 0;
+  background: url("../img/bg.gif") repeat;
+  /*
+アニメーションを実行
+
+fall：下で定義している「@keyframes fall」を実行
+10s：アニメーションが始まってから終わるまでの時間（10sかけて実行）
+infinite：アニメーションの繰り返し回数(無限に繰り返す)
+linear：アニメーションの変化（開始から終了まで一定に変化）
+*/
+  animation: fall 10s infinite linear;
+}
+
+/*
+アニメーション処理
+
+10秒かけて背景画像の位置「background-position」を移動させる動作を繰り返す
+*/
+@keyframes fall {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -700px 700px;
+  }
+}
+
+#about ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#about li {
+  border-radius: 20px;
+  background-color: #FFFFFF;
+  width: 48%;
+  margin-bottom: 32px;
+  padding: 60px;
+}
+
+#about .ja, .en {
+  text-align: center;
+  display: block;
+  font-weight: bold;
+}
+
+#about .ja {
+  letter-spacing: 3px;
+  font-size: 28px;
+}
+
+#about .en {
+  letter-spacing: 1px;
+  font-size: 18px;
+  margin: 15px 0 20px;
+}
+
+#entry {
+  padding: 120px 0;
+  text-align: center;
+}
+
+#entry h4 {
+  letter-spacing: 3px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+#entry p {
+  letter-spacing: 1.5px;
+  font-size: 18px;
+  margin: 5px 0 40px;
+}
+
+#entry a {
+  letter-spacing: 3px;
+  color: #FFFFFF;
+  background-color: #FF2A2A;
+  font-size: 28px;
+  font-weight: bold;
+  width: 100%;
+  padding: 15px 0;
+  display: block;
+  border-radius: 40px;
+  border: #FF2A2A 3px solid;
+}
+
+#entry a:hover {
+  background-color: #FFFFFF;
+  color: #FF2A2A;
+}
+
+footer {
+  padding: 60px 0 20px;
+  background-color: #E8E8E8;
+}
+
+footer .wrapper {
+  display: flex;
+}
+
+footer .menu {
+  width: 25%;
+}
+
+footer .menu p {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+footer .menu ul {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+footer .menu li {
+  line-height: 1.4;
+}
+
+footer .menu a {
+  transition: 0.5s;
+  letter-spacing: 2px;
+}
+
+footer .menu a:hover {
+  opacity: 0.7;
+}
+
+footer .copy {
+  font-size: 10px;
+  text-align: center;
+  margin-top: 60px;
+}
