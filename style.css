@@ -552,7 +552,7 @@ forwards：アニメーション終了時の状態をそのまま維持
 
 #about {
   padding: 60px 0;
-  background: url("../img/bg.gif") repeat;
+  background: url("img/bg.gif") repeat;
   /*
 アニメーションを実行
 
